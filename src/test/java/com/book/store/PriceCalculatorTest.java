@@ -49,7 +49,7 @@ public class PriceCalculatorTest {
     }
 
     @Test
-    public void testMixedBooks() {
+    public void testMultipleBooks() {
         Map<String, Integer> bookCounts = new java.util.HashMap<>(Map.of("Book 1", 2));
         bookCounts.put("Book 2", 2);
         bookCounts.put("Book 3", 2);
