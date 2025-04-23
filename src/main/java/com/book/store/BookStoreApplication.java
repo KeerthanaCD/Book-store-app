@@ -1,5 +1,8 @@
 package com.book.store;
 
+import com.book.store.enums.BookTitles;
+import com.book.store.service.PriceCalculator;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;

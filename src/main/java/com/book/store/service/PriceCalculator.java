@@ -1,6 +1,6 @@
-package com.book.store;
+package com.book.store.service;
 
-import com.book.store.strategy.DefaultDiscountStrategy;
+import com.book.store.strategy.DiscountStrategyFactory;
 import com.book.store.strategy.IDiscountStrategy;
 
 import java.util.ArrayList;
@@ -23,9 +23,22 @@ public class PriceCalculator {
     private static final double BOOK_PRICE = 50.0;
 
     /**
+     * The environment variable name for the discount strategy.
+     */
+    private static final String DISCOUNT_STRATEGY = "DISCOUNT_STRATEGY";
+
+    /**
      * The discount strategy used to calculate the price of groups of books.
      */
-    private final IDiscountStrategy discountStrategy = new DefaultDiscountStrategy();
+    private final IDiscountStrategy discountStrategy;
+
+    /**
+     * Constructor to initialize the discount strategy using a factory.
+     */
+    public PriceCalculator() {
+        String strategyType = System.getenv(DISCOUNT_STRATEGY);
+        this.discountStrategy = DiscountStrategyFactory.getStrategy(strategyType);
+    }
 
     /**
      * Calculates the total price of books with the maximum possible discount applied.
@@ -48,8 +61,8 @@ public class PriceCalculator {
      * Recursively calculates the minimum price for a given list of book counts by forming groups
      * and applying discounts.
      *
-     * @param bookCounts A list of integers representing the counts of each book.
-     * @param computedResults   A map to store previously computed results for specific counts.
+     * @param bookCounts      A list of integers representing the counts of each book.
+     * @param computedResults A map to store previously computed results for specific counts.
      * @return The minimum price for the given book counts.
      */
     private double calculateMaxDiscount(List<Integer> bookCounts, Map<List<Integer>, Double> computedResults) {
@@ -103,3 +116,4 @@ public class PriceCalculator {
         return newCounts;
     }
 }
+

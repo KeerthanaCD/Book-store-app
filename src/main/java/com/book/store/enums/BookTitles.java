@@ -1,4 +1,4 @@
-package com.book.store;
+package com.book.store.enums;
 
 /**
  * Enum representing book titles, authors, and publication years.
