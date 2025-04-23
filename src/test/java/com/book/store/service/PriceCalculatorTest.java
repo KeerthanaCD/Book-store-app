@@ -1,6 +1,5 @@
-package com.book.store;
+package com.book.store.service;
 
-import com.book.store.service.PriceCalculator;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;

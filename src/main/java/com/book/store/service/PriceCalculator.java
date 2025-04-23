@@ -53,8 +53,8 @@ public class PriceCalculator {
      */
     public double calculateTotalPrice(Map<String, Integer> bookCounts) {
         List<Integer> counts = new ArrayList<>(bookCounts.values());
-        Map<List<Integer>, Double> memo = new HashMap<>(); // Memoization map
-        return calculateMaxDiscount(counts, memo);
+        Map<List<Integer>, Double> computedResults = new HashMap<>();
+        return calculateMaxDiscount(counts, computedResults);
     }
 
     /**
