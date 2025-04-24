@@ -1,30 +1,24 @@
 package com.book.store.strategy;
 
+import com.book.store.factory.DiscountStrategyFactory;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class DiscountStrategyFactoryTest {
+class DiscountStrategyFactoryTest {
 
-    @Test
-    void testDefaultStrategy() {
-        IDiscountStrategy strategy = DiscountStrategyFactory.getStrategy("DEFAULT");
+    @ParameterizedTest
+    @CsvSource({
+        "DEFAULT, com.book.store.strategy.DefaultDiscountStrategy",
+        "'', com.book.store.strategy.DefaultDiscountStrategy",
+        "null, com.book.store.strategy.DefaultDiscountStrategy"
+    })
+    void testDefaultStrategies(String input, String expectedClassName) throws ClassNotFoundException {
+        IDiscountStrategy strategy = DiscountStrategyFactory.getStrategy("null".equals(input) ? null : input);
         assertNotNull(strategy);
-        assertInstanceOf(DefaultDiscountStrategy.class, strategy);
-    }
-
-    @Test
-    void testStrategyWithNullValue() {
-        IDiscountStrategy strategy = DiscountStrategyFactory.getStrategy(null);
-        assertNotNull(strategy);
-        assertInstanceOf(DefaultDiscountStrategy.class, strategy);
-    }
-
-    @Test
-    void testStrategyWithEmptyValue() {
-        IDiscountStrategy strategy = DiscountStrategyFactory.getStrategy("");
-        assertNotNull(strategy);
-        assertInstanceOf(DefaultDiscountStrategy.class, strategy);
+        assertEquals(Class.forName(expectedClassName), strategy.getClass());
     }
 
     @Test

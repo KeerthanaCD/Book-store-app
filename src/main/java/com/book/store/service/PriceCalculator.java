@@ -1,6 +1,6 @@
 package com.book.store.service;
 
-import com.book.store.strategy.DiscountStrategyFactory;
+import com.book.store.factory.DiscountStrategyFactory;
 import com.book.store.strategy.IDiscountStrategy;
 
 import java.util.ArrayList;

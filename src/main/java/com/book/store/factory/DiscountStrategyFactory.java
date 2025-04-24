@@ -1,4 +1,7 @@
-package com.book.store.strategy;
+package com.book.store.factory;
+
+import com.book.store.strategy.DefaultDiscountStrategy;
+import com.book.store.strategy.IDiscountStrategy;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +13,10 @@ public class DiscountStrategyFactory {
 
     private static final Map<String, IDiscountStrategy> strategies = new HashMap<>();
     private static final String DEFAULT_STRATEGY = "DEFAULT";
+
+    private DiscountStrategyFactory() {
+        throw new IllegalStateException("Factory class");
+    }
 
     static {
         strategies.put(DEFAULT_STRATEGY, new DefaultDiscountStrategy());

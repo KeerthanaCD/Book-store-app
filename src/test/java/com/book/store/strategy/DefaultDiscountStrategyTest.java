@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DefaultDiscountStrategyTest {
+class DefaultDiscountStrategyTest {
 
     private final DefaultDiscountStrategy discountStrategy = new DefaultDiscountStrategy();
 
