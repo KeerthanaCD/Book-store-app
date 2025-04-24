@@ -21,7 +21,7 @@ Book-store-app is a Java application designed to calculate the final price of bo
    ```
 4. Run the application:
    ```bash
-   java -jar target/book-store-app.jar
+   java -jar BookStore-1.0-SNAPSHOT.jar
    ```
 
 ## Usage
