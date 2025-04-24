@@ -2,7 +2,7 @@ package com.book.store.enums;
 
 /**
  * Enum representing book titles, authors, and publication years.
- * This enum is used to provide a structured way to manage book information.
+ * This enum is used to provide the book information.
  */
 public enum BookTitles {
     CLEAN_CODE("Clean Code"),

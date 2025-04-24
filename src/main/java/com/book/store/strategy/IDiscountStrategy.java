@@ -3,7 +3,7 @@ package com.book.store.strategy;
 /**
  * The {@code DiscountStrategy} interface defines the contract for calculating
  * the price of a group of books based on its size and applicable discounts. Custom
- * implementation of discount strategy can be done implementing the interface.
+ * implementation of discount strategy can be done by implementing this interface.
  */
 public interface IDiscountStrategy {
     /**

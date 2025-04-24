@@ -1,13 +1,14 @@
 package com.book.store;
 
+import com.book.store.config.LoggerConfig;
 import com.book.store.enums.BookTitles;
 import com.book.store.service.PriceCalculator;
-import com.book.store.config.LoggerConfig; // Import LoggerConfig
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.logging.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * BookStoreApplication is the main class for the book store application.
@@ -15,7 +16,6 @@ import java.util.logging.*;
  */
 public class BookStoreApplication {
 
-    // Initialize logger using LoggerConfig
     private static final Logger logger = LoggerConfig.getLogger(BookStoreApplication.class.getName());
 
     /**

@@ -7,23 +7,23 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class PriceCalculatorTest {
+class PriceCalculatorTest {
 
     @Test
-    public void testOneBook() {
+    void testOneBook() {
         Map<String, Integer> bookCounts = Map.of(BookTitles.THE_CLEAN_CODER.getTitle(), 1);
         assertEquals(50.0, new PriceCalculator().calculateTotalPrice(bookCounts));
     }
 
     @Test
-    public void testTwoDifferentBooks() {
+    void testTwoDifferentBooks() {
         Map<String, Integer> bookCounts = new java.util.HashMap<>(Map.of(BookTitles.THE_CLEAN_CODER.getTitle(), 1));
         bookCounts.put(BookTitles.TEST_DRIVEN_DEVELOPMENT.getTitle(), 1);
         assertEquals(95.0, new PriceCalculator().calculateTotalPrice(bookCounts));
     }
 
     @Test
-    public void testThreeDifferentBooks() {
+    void testThreeDifferentBooks() {
         Map<String, Integer> bookCounts = new java.util.HashMap<>(Map.of(BookTitles.THE_CLEAN_CODER.getTitle(), 1));
         bookCounts.put(BookTitles.TEST_DRIVEN_DEVELOPMENT.getTitle(), 1);
         bookCounts.put(BookTitles.CLEAN_ARCHITECTURE.getTitle(), 1);
@@ -31,7 +31,7 @@ public class PriceCalculatorTest {
     }
 
     @Test
-    public void testFourDifferentBooks() {
+    void testFourDifferentBooks() {
         Map<String, Integer> bookCounts = new java.util.HashMap<>(Map.of(BookTitles.THE_CLEAN_CODER.getTitle(), 1));
         bookCounts.put(BookTitles.TEST_DRIVEN_DEVELOPMENT.getTitle(), 1);
         bookCounts.put(BookTitles.CLEAN_ARCHITECTURE.getTitle(), 1);
@@ -40,7 +40,7 @@ public class PriceCalculatorTest {
     }
 
     @Test
-    public void testFiveDifferentBooks() {
+    void testFiveDifferentBooks() {
         Map<String, Integer> bookCounts = new java.util.HashMap<>(Map.of(BookTitles.THE_CLEAN_CODER.getTitle(), 1));
         bookCounts.put(BookTitles.TEST_DRIVEN_DEVELOPMENT.getTitle(), 1);
         bookCounts.put(BookTitles.CLEAN_ARCHITECTURE.getTitle(), 1);
@@ -50,7 +50,7 @@ public class PriceCalculatorTest {
     }
 
     @Test
-    public void testMultipleBooksWithLessCount() {
+    void testMultipleBooksWithLessCount() {
         Map<String, Integer> bookCounts = new java.util.HashMap<>(Map.of(BookTitles.THE_CLEAN_CODER.getTitle(), 2));
         bookCounts.put(BookTitles.TEST_DRIVEN_DEVELOPMENT.getTitle(), 1);
         bookCounts.put(BookTitles.WORKING_EFFECTIVELY_WITH_LEGACY_CODE.getTitle(), 2);
@@ -58,7 +58,7 @@ public class PriceCalculatorTest {
     }
 
     @Test
-    public void testMultipleBooksWithMoreCount() {
+    void testMultipleBooksWithMoreCount() {
         Map<String, Integer> bookCounts = new java.util.HashMap<>(Map.of(BookTitles.THE_CLEAN_CODER.getTitle(), 2));
         bookCounts.put(BookTitles.TEST_DRIVEN_DEVELOPMENT.getTitle(), 2);
         bookCounts.put(BookTitles.CLEAN_ARCHITECTURE.getTitle(), 2);
