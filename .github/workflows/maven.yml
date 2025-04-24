@@ -42,7 +42,7 @@ jobs:
         name: target
         path: |
           target
-          reports
+          surefire-reports
 
     - name: Test Report
       uses: dorny/test-reporter@v1
