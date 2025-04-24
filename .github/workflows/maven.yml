@@ -37,7 +37,7 @@ jobs:
       run: mvn clean verify org.jacoco:jacoco-maven-plugin:report -Pcoverage-per-test
 
     - name: Upload target folder
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-pages-artifact@v3
       with:
         name: target
         path: |
