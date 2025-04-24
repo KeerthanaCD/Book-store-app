@@ -27,26 +27,18 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
         cache: maven
+
     - name: Build with Maven
-      run: mvn -B clean package --file pom.xml
+      run: mvn --batch-mode -DskipTests package
 
-    - name: Build the Project
-      run: mvn clean install -DskipTests
+    - name: Test
+      run: mvn --batch-mode -Dmaven.test.failure.ignore=true test
 
-    - name: Coverage per Test Execution
-      run: mvn org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test
-
-    - name: Upload target folder
-      uses: actions/upload-pages-artifact@v3
-      with:
-        name: target
-        path: ${{ github.workspace }}/target/surefire-reports
-
-    - name: Test Report
+    - name: Report
       uses: dorny/test-reporter@v1
       if: always()
       with:
-        name: Test Results
-        path: target/surefire-reports
+        name: Maven Tests
+        path: target/surefire-reports/*.xml
         reporter: java-junit
-        java-version: 21
+        fail-on-error: true
