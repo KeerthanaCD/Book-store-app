@@ -51,7 +51,20 @@ public class BookStoreApplication {
         for (BookTitles bookTitle : BookTitles.values()) {
             String message = "Enter the total copies for " + bookTitle.getTitle() + ": ";
             logger.log(Level.INFO, message);
-            int count = scanner.nextInt();
+            int count = 0;
+            while (true) {
+                if (scanner.hasNextInt()) {
+                    count = scanner.nextInt();
+                    if (count >= 0) {
+                        break;
+                    } else {
+                        logger.log(Level.WARNING, "Please enter a non-negative number.");
+                    }
+                } else {
+                    logger.log(Level.WARNING, "Invalid input. Please enter a valid number.");
+                    scanner.next(); // Clear invalid input
+                }
+            }
             bookCounts.put(bookTitle.getTitle(), count);
         }
         return bookCounts;
