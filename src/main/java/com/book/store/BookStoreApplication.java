@@ -42,7 +42,7 @@ public class BookStoreApplication {
         Scanner scanner = new Scanner(System.in);
         Map<String, Integer> bookCounts = new HashMap<>();
         for (BookTitles bookTitle : BookTitles.values()) {
-            System.out.print("Enter the number of copies for \"" + bookTitle + "\": ");
+            System.out.print("Enter the total copies for \"" + bookTitle + "\": ");
             int count = scanner.nextInt();
             bookCounts.put(bookTitle.getTitle(), count);
         }

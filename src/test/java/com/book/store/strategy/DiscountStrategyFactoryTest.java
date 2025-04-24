@@ -4,27 +4,34 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DiscountStrategyFactoryTest {
+public class DiscountStrategyFactoryTest {
 
     @Test
-    void testGetDefaultStrategy() {
+    void testDefaultStrategy() {
         IDiscountStrategy strategy = DiscountStrategyFactory.getStrategy("DEFAULT");
         assertNotNull(strategy);
         assertInstanceOf(DefaultDiscountStrategy.class, strategy);
     }
 
     @Test
-    void testGetStrategyWithNullType() {
+    void testStrategyWithNullValue() {
         IDiscountStrategy strategy = DiscountStrategyFactory.getStrategy(null);
         assertNotNull(strategy);
         assertInstanceOf(DefaultDiscountStrategy.class, strategy);
     }
 
     @Test
-    void testGetStrategyWithUnsupportedType() {
+    void testStrategyWithEmptyValue() {
+        IDiscountStrategy strategy = DiscountStrategyFactory.getStrategy("");
+        assertNotNull(strategy);
+        assertInstanceOf(DefaultDiscountStrategy.class, strategy);
+    }
+
+    @Test
+    void testStrategyWithInvalidType() {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> 
             DiscountStrategyFactory.getStrategy("TEST")
         );
-        assertEquals("Unsupported discount strategy: UNSUPPORTED", exception.getMessage());
+        assertEquals("Unsupported discount strategy: TEST", exception.getMessage());
     }
 }

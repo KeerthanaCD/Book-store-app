@@ -16,7 +16,7 @@ public class DefaultDiscountStrategy implements IDiscountStrategy {
     );
 
     @Override
-    public double calculateGroupPrice(int groupSize, double bookPrice) {
+    public double calculateSetPrice(int groupSize, double bookPrice) {
         return groupSize * bookPrice * (1 - DISCOUNTS.getOrDefault(groupSize, 0.0));
     }
 }
