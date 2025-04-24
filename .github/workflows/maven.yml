@@ -47,6 +47,6 @@ jobs:
       if: always()
       with:
         name: Test Results
-        path: target/surefire-reports/TEST-TestSuite.xml
+        path: target/surefire-reports
         reporter: java-junit
         java-version: 21
