@@ -1,53 +1,44 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
-
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-name: Java CI with Maven
-
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
 jobs:
   build:
 
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up JDK 21
-      uses: actions/setup-java@v4
-      with:
-        java-version: '21'
-        distribution: 'temurin'
-        cache: maven
-    - name: Build with Maven
-      run: mvn -B clean package --file pom.xml
+      - uses: actions/checkout@v4
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+      - name: Build with Maven
+        run: mvn -B clean package --file pom.xml
 
-    - name: Build the Project
-      run: mvn clean install -DskipTests
+      - name: Build the Project
+        run: mvn clean install -DskipTests
 
-    - name: Coverage per Test Execution
-      run: mvn org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test
+      - name: Coverage per Test Execution
+        run: mvn org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test
 
-    - name: Upload target folder
-      uses: actions/upload-pages-artifact@v3
-      with:
-        name: target
-        path: |
-          /home/runner/work/Book-store-app/target/surefire-reports
+      - name: Verify target folder existence
+        run: |
+          if [ ! -d "${{ github.workspace }}/target/surefire-reports" ]; then
+            echo "Directory target/surefire-reports does not exist. Creating it."
+            mkdir -p ${{ github.workspace }}/target/surefire-reports
+          fi
 
-    - name: Test Report
-      uses: dorny/test-reporter@v1
-      if: always()
-      with:
-        name: Test Results
-        path: target/surefire-reports/TEST-TestSuite.xml
-        reporter: java-junit
-        java-version: 21
+      - name: Upload target folder
+        uses: actions/upload-pages-artifact@v3
+        with:
+          name: target
+          path: |
+            ${{ github.workspace }}/target/surefire-reports
+
+      - name: Test Report
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Test Results
+          path: target/surefire-reports/TEST-TestSuite.xml
+          reporter: java-junit
+          java-version: 21
