@@ -30,5 +30,26 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
-    - name: Run Tests and Generate Report
-      run: mvn test surefire-report:report
+    
+    - name: Build the Project
+      run: mvn clean install -DskipTests
+
+    - name: Coverage per Test Execution
+      run: mvn org.jacoco:jacoco-maven-plugin:prepare-agent install -Pcoverage-per-test
+
+    - name: Upload target folder
+      uses: actions/upload-artifact@v2
+      with:
+        name: target
+        path: |
+          ${{ github.workspace }}/target
+          ${{ github.workspace }}/reports
+
+    - name: Test Report
+        uses: dorny/test-reporter@v1
+        if: success() || failure()
+        with:
+          name: Test Results
+          path: ${{ github.workspace }}/target/surefire-reports/TEST-TestSuite.xml
+          reporter: java-junit
+          java-version: 21
