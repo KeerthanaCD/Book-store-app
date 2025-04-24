@@ -41,7 +41,7 @@ jobs:
       with:
         name: target
         path: |
-          target/surefire-reports
+          ${{ github.workspace }}/target/surefire-reports
 
     - name: Test Report
       uses: dorny/test-reporter@v1
